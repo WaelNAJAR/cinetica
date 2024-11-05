@@ -26,6 +26,8 @@ export async function GET() {
     return new Response(JSON.stringify(movies), { status: 200 });
   } catch (error) {
     console.error("Erreur lors de la récupération des films populaires ");
+    console.error("Erreur de récupération :", error);
+
     return new Response(JSON.stringify({ error: "Échec de la récupération des films populaires" }), { status: 500 });
   }
 }
