@@ -1,101 +1,108 @@
-import Image from "next/image";
+"use client";
+//import Image from 'next/image';
+import { useState } from "react";
+import { user } from './Repository/user' ;
+import bcrypt from 'bcryptjs' ; 
+import { useRouter } from 'next/navigation';
+
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [isLogged , setIsLogged] = useState(false);
+  const [userName , setUserName] = useState('');
+  const [password , setPassword] = useState('');
+  const router = useRouter();
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+  
+  const handleLogIn = (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
+    // Vérification de l'username
+    if (userName !== user.username) {
+      alert("Nom d'utilisateur incorrect");
+      return;
+    }
+  
+    // Vérification du mot de passe haché
+    bcrypt.compare(password, user.password, (err, isMatch) => {
+      if (err) {
+        console.error("Erreur de comparaison du mot de passe:", err);
+        return;
+      }
+      if (isMatch) {
+        setIsLogged(true); // Connexion réussie
+        alert("Connexion réussie");
+        router.push('/home'); 
+
+      } else {
+        alert("Mot de passe incorrect");
+      }
+    });
+  };
+  
+
+  return (
+    <div className="relative min-h-screen flex items-center justify-center bg-gray-800">
+      
+    {/* Background image with blur effect */}
+    <div className="absolute inset-0 z-0">
+      <img
+        src="/images/netflix.jpg" // Image d'arrière-plan floue
+        alt="Background"
+        //layout="fill"
+        //objectFit="cover"
+        className="filter blur-md"
+      />
     </div>
-  );
-}
+
+    {/* Login form */}
+    <div className="relative z-10 bg-white bg-opacity-90 p-8 rounded-lg shadow-lg max-w-md w-full mx-4">
+      
+      {/* Logo */}
+      <div className="flex justify-center mb-6">
+        <img
+          src="/images/netflix.png" // Logo de l'application
+          alt="Logo"
+          width={150}
+          height={50}
+          className="object-contain"
+        />
+      </div>
+
+      <h2 className="text-2xl font-bold text-center mb-6">Log In</h2>
+      <form onSubmit={handleLogIn}>
+        <div className="mb-4">
+          <label htmlFor="username" className="block text-gray-700 font-semibold mb-2">
+            Username
+          </label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value={userName}
+            onChange={(e)=>{setUserName(e.target.value)}}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+        </div>
+        <div className="mb-6">
+          <label htmlFor="password" className="block text-gray-700 font-semibold mb-2">
+            Password
+          </label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={password}
+            onChange={(e)=>{setPassword(e.target.value)}}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+        </div>
+        <button
+          type="submit"
+          className="w-full bg-indigo-600 text-white py-2 rounded-lg font-semibold hover:bg-indigo-700 transition duration-200"
+        >
+          Log In
+        </button>
+      </form>
+    </div>
+  </div>
+
+  );}
