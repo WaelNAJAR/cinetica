@@ -13,39 +13,34 @@ export default function Home() {
   const router = useRouter();
 
   
-  const handleLogIn = (event: { preventDefault: () => void; }) => {
+  const handleLogIn = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
-    // Vérification de l'username
-    if (userName !== user.username) {
-      alert("Nom d'utilisateur incorrect");
-      return;
-    }
   
-    // Vérification du mot de passe haché
-    bcrypt.compare(password, user.password, (err, isMatch) => {
-      if (err) {
-        console.error("Erreur de comparaison du mot de passe:", err);
-        return;
-      }
-      if (isMatch) {
-        setIsLogged(true); // Connexion réussie
-        alert("Connexion réussie");
-        router.push('/home'); 
-
-      } else {
-        alert("Mot de passe incorrect");
-      }
+    const response = await fetch('/api/authentification', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username: userName, password: password }),
     });
-  };
   
+    const data = await response.json();
+  
+    if (data.success) {
+      setIsLogged(true); // Connexion réussie
+      alert(data.message);
+      router.push('/home'); 
+    } else {
+      alert(data.message);
+    }
+  };
 
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-gray-800">
       
-    {/* Background image with blur effect */}
     <div className="absolute inset-0 z-0">
       <img
-        src="/images/netflix.jpg" // Image d'arrière-plan floue
+        src="C:\public\images\netflix.jpg" 
         alt="Background"
         //layout="fill"
         //objectFit="cover"
