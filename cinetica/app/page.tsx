@@ -1,8 +1,6 @@
 "use client";
 //import Image from 'next/image';
 import { useState } from "react";
-import { user } from './Repository/user' ;
-import bcrypt from 'bcryptjs' ; 
 import { useRouter } from 'next/navigation';
 
 
