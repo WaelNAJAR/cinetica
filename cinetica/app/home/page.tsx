@@ -5,53 +5,53 @@ import MovieCard from '../components/MovieCard';
 import SerieCard from '../components/SerieCard';
 import { Movie } from '../entities/Movie';
 import { TVShow } from '../entities/TVShow';
-//import Sidebar from '../components/SideBar';
+import { SidebarProvider, useSidebar } from "@/components/ui/sidebar";  // Assurez-vous de l'importer depuis shadcn
+import { AppSidebar } from '../components/AppSideBar';
+import Navbar from '../components/NavBar';
+import { FilmsSeries } from '../components/FilmsSeries';
+import { NowPlaying} from '../components/NowPlaying' ;
+import { PopularMovies } from '../components/PopularMovies' ; 
+import { TopRated } from '../components/TopRated';
+import { OnTheAir } from '../components/OnTheAir';
+import { PopularSeries } from '../components/PopularSeries' ; 
+import { TopRatedSeries } from '../components/TopRatedSeries';
 const HomePage = () => {
-    const [data, setData] = useState<{ films: Movie[]; series: TVShow[] } | null>(null);
-    
+    const [selectedContent, setSelectedContent] = useState("");
+    const [inMovie, setInMovie] = useState(true);
 
 
-    useEffect(() => {
-        fetch('/api/discover')
-            .then((response) => response.json())
-            .then((data) => {
-                console.log("Données récupérées :", data.films); 
-                setData(data);
-            });
-    }, []);
+
+
 
     return (
-        <>
-<div className="container mx-auto px-4 py-8">
-    <h1 className="text-3xl font-extrabold text-gray-800 mb-6 text-center">Films</h1>
-    
-    {data === null ? (
-        <p className="text-center text-gray-600 text-lg">Chargement...</p>  // Indicateur de chargement stylisé
-    ) : (
-        <div className="flex flex-wrap justify-center gap-2">
-            {data.films?.map((movie) => {
-                //console.log("Film affiché :", movie); 
-                return <MovieCard key={movie.id} movie={movie} />;
-            })}
-        </div>
-    )}
-</div>
+        <SidebarProvider> {/* Encapsule toute la page dans SidebarProvider */}
+            <div className="flex pt-16">
+                <Navbar />
+                <AppSidebar selectedContent={selectedContent} setSelectedContent={setSelectedContent} inMovie={inMovie} setInMovie={setInMovie} />
 
-<div className="container mx-auto px-4 py-8">
-    <h1 className="text-3xl font-extrabold text-gray-800 mb-6 text-center">Series</h1>
-    
-    {data === null ? (
-        <p className="text-center text-gray-600 text-lg">Chargement...</p>  // Indicateur de chargement stylisé
-    ) : (
-        <div className="flex flex-wrap justify-center gap-2">
-            {data.series?.map((serie) => {
-                //console.log("Film affiché :", serie); // Affiche chaque film dans la console
-                return <SerieCard key={serie.id} serie={serie} />;
-            })}
-        </div>
-    )}
-</div>
-</>
+
+                {selectedContent === "" ? (
+                        <FilmsSeries /> // Affiche par défaut les films et séries
+                    ) : (
+                        selectedContent === "Now Playing" ? (
+                            <NowPlaying />
+                        ) : (selectedContent === "Popular" && inMovie)? (
+                            <PopularMovies />
+                        ) : (selectedContent === "Top Rated" && inMovie) ? (
+                            <TopRated />
+                        ) : selectedContent === "On The Air" ? (
+                            <OnTheAir />
+                        ) : (selectedContent === "Popular" && !inMovie)? (
+                            <PopularSeries />
+                        ) : (selectedContent === "Top Rated" && !inMovie)? (
+                            <TopRatedSeries />
+                        ): (
+                            <FilmsSeries />
+                        )
+                    )}
+            </div>
+
+        </SidebarProvider>
     );
 };
 

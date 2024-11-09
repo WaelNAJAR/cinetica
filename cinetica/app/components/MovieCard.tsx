@@ -12,7 +12,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, onClick }) => {
 
     return (
         <>
-        <div className="bg-white shadow-md rounded-lg overflow-hidden max-w-xs mx-auto" onClick={onClick}>
+        <div className="bg-white transform hover:scale-105 transition-transform duration-300 hover:shadow-lg hover:shadow-gray-500/50 rounded-lg overflow-hidden max-w-xs mx-auto" onClick={onClick}>
             <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt={movie.title} className="w-full h-48 object-cover" />
             <div className="p-4">
                 <h3 className="text-lg font-semibold text-gray-800 ">{movie.title}</h3>
