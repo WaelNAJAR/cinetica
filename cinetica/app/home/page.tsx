@@ -1,7 +1,7 @@
 // app/home/page.tsx
 "use client";
 import React, { useState } from 'react';
-import { SidebarProvider, useSidebar } from "@/components/ui/sidebar";  // Assurez-vous de l'importer depuis shadcn
+import { SidebarProvider } from "@/components/ui/sidebar";  // Assurez-vous de l'importer depuis shadcn
 import { AppSidebar } from '../components/AppSideBar';
 import Navbar from '../components/NavBar';
 import { FilmsSeries } from '../components/FilmsSeries';
