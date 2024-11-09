@@ -4,17 +4,19 @@ import MovieCard from "./MovieCard";
 import Loading from "./Loading";
 
 
-export function PopularMovies() {
+export function PopularMovies({ searchQuery }: { searchQuery: string }) {
     const [data, setData] = useState<{ films: Movie[]} | null>(null);
 
     useEffect(() => {
         fetch('/api/movies/popular')
             .then((response) => response.json())
             .then((data) => {
-                console.log("Donnéesssssssssssss récupérées :", data);
-                setData({ films: data });
-            });
-    }, []);
+                const filteredMovies = data.filter((movie: Movie) =>
+                  movie.title.toLowerCase().includes(searchQuery.toLowerCase())
+                );
+                setData({films: filteredMovies});
+              });
+    }, [searchQuery]);
 
     return (
         <div className="flex flex-col container mx-auto px-4 py-8">

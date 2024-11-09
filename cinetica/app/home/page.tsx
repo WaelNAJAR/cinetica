@@ -14,6 +14,10 @@ import { TopRatedSeries } from '../components/TopRatedSeries';
 const HomePage = () => {
     const [selectedContent, setSelectedContent] = useState("");
     const [inMovie, setInMovie] = useState(true);
+    const [searchQuery, setSearchQuery] = useState("");
+    const handleSearch = (query: string) => {
+        setSearchQuery(query);
+      };
 
 
 
@@ -22,17 +26,17 @@ const HomePage = () => {
     return (
         <SidebarProvider> {/* Encapsule toute la page dans SidebarProvider */}
             <div className="flex pt-16">
-                <Navbar />
+                <Navbar onSearch={handleSearch}/>
                 <AppSidebar setSelectedContent={setSelectedContent} setInMovie={setInMovie} />
 
 
                 {selectedContent === "" ? (
-                        <FilmsSeries /> // Affiche par défaut les films et séries
+                        <FilmsSeries searchQuery={searchQuery} /> // Affiche par défaut les films et séries
                     ) : (
                         selectedContent === "Now Playing" ? (
-                            <NowPlaying />
+                            <NowPlaying searchQuery={searchQuery} />
                         ) : (selectedContent === "Popular" && inMovie)? (
-                            <PopularMovies />
+                            <PopularMovies searchQuery={searchQuery}/>
                         ) : (selectedContent === "Top Rated" && inMovie) ? (
                             <TopRated />
                         ) : selectedContent === "On The Air" ? (
@@ -42,7 +46,7 @@ const HomePage = () => {
                         ) : (selectedContent === "Top Rated" && !inMovie)? (
                             <TopRatedSeries />
                         ): (
-                            <FilmsSeries />
+                            <FilmsSeries searchQuery={searchQuery}/>
                         )
                     )}
             </div>
