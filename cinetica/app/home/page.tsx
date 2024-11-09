@@ -1,10 +1,6 @@
 // app/home/page.tsx
 "use client";
-import React, { useEffect, useState } from 'react';
-import MovieCard from '../components/MovieCard';
-import SerieCard from '../components/SerieCard';
-import { Movie } from '../entities/Movie';
-import { TVShow } from '../entities/TVShow';
+import React, { useState } from 'react';
 import { SidebarProvider, useSidebar } from "@/components/ui/sidebar";  // Assurez-vous de l'importer depuis shadcn
 import { AppSidebar } from '../components/AppSideBar';
 import Navbar from '../components/NavBar';
@@ -27,7 +23,7 @@ const HomePage = () => {
         <SidebarProvider> {/* Encapsule toute la page dans SidebarProvider */}
             <div className="flex pt-16">
                 <Navbar />
-                <AppSidebar selectedContent={selectedContent} setSelectedContent={setSelectedContent} inMovie={inMovie} setInMovie={setInMovie} />
+                <AppSidebar setSelectedContent={setSelectedContent} setInMovie={setInMovie} />
 
 
                 {selectedContent === "" ? (

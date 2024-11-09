@@ -7,7 +7,7 @@ import {
     useSidebar,
 } from "@/components/ui/sidebar";
 
-import { Film, Tv, Star, Settings, LogOut, Menu, ChevronLeft } from "lucide-react"; // Icônes de Lucide
+import { Film, Tv, Star, LogOut, Menu, ChevronLeft } from "lucide-react"; // Icônes de Lucide
 
 export function AppSidebar({setSelectedContent,setInMovie}) {
     const { toggleSidebar, state } = useSidebar(); // Utilisation du hook pour basculer la sidebar et accéder à son état

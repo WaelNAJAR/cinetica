@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 
 
 export default function Home() {
-  const [isLogged , setIsLogged] = useState(false);
   const [userName , setUserName] = useState('');
   const [password , setPassword] = useState('');
   const router = useRouter();
@@ -25,7 +24,6 @@ export default function Home() {
     const data = await response.json();
   
     if (data.success) {
-      setIsLogged(true); // Connexion réussie
       alert(data.message);
       router.push('/home'); 
     } else {
