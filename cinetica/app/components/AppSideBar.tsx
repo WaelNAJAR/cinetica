@@ -8,6 +8,8 @@ import {
 } from "@/components/ui/sidebar";
 
 import { Film, Tv, Star, LogOut, Menu, ChevronLeft } from "lucide-react"; // Icônes de Lucide
+import  { useRouter } from 'next/navigation';
+
 interface AppSidebarProps {
     setSelectedContent?: (content: string) => void;
     setInMovie?: (value: boolean) => void;
@@ -17,7 +19,11 @@ export function AppSidebar({
     setInMovie = () => {},        // Valeur par défaut si non fournie
   }: AppSidebarProps) {
     const { toggleSidebar, state } = useSidebar(); // Utilisation du hook pour basculer la sidebar et accéder à son état
-
+    const router = useRouter();
+    function versLogin()
+    {
+        router.push('/'); 
+    }
     return (
         <div className="relative">
             {/* Icône pour ouvrir/fermer la sidebar */}
@@ -119,12 +125,13 @@ export function AppSidebar({
 
                 {/* Pied du Sidebar avec option de déconnexion */}
                 <SidebarFooter>
-                    <div className="hover:bg-gray-800 rounded-lg">
+                    <button className="hover:bg-gray-800 rounded-lg" 
+                            onClick={versLogin}>
                         <div className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-white">
                             <LogOut />
                             <span >Log Out</span>
                         </div>
-                    </div>
+                    </button>
                 </SidebarFooter>
             </Sidebar>
         </div>

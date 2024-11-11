@@ -1,6 +1,6 @@
 // app/home/page.tsx
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SidebarProvider } from "@/components/ui/sidebar";  // Assurez-vous de l'importer depuis shadcn
 import { AppSidebar } from '../components/AppSideBar';
 import Navbar from '../components/NavBar';
@@ -22,6 +22,11 @@ const HomePage = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedItem, setSelectedItem] = useState<Movie | TVShow | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    useEffect(() => {
+        // Trigger actions when selectedContent changes
+        console.log(`selectedContent changed to: ${selectedContent}`);
+        // Optionally, reset or refetch data here if needed
+    }, [selectedContent]);
     const handleSearch = (query: string) => {
         setSearchQuery(query);
       };
@@ -39,7 +44,7 @@ const HomePage = () => {
     return (
         <SidebarProvider> {/* Encapsule toute la page dans SidebarProvider */}
             <div className="flex pt-16">
-                <Navbar onSearch={handleSearch}/>
+                <Navbar onSearch={handleSearch} setSelectedContent={setSelectedContent}/>
                 <AppSidebar setSelectedContent={setSelectedContent} setInMovie={setInMovie} />
                 <ModalFilm isOpen={isModalOpen} onClose={closeModal} item={selectedItem as Movie} isMovie={isMovie}/>
                 <ModalSerie isOpen={isModalOpen} onClose={closeModal} serie={selectedItem as TVShow} isMovie={isMovie}/>
