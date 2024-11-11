@@ -3,8 +3,12 @@ import { TVShow } from "../entities/TVShow";
 import SerieCard from "./SerieCard";
 import Loading from "./Loading";
 
-
-export function OnTheAir() {
+interface onTheAirSerieProps {
+    searchQuery: string;
+    onSerieClick: (serie: TVShow) => void;
+    setIsMovie: any ;
+}
+export function OnTheAir({searchQuery,onSerieClick,setIsMovie}:onTheAirSerieProps) {
     const [data, setData] = useState<{ series: TVShow[]} | null>(null);
 
     useEffect(() => {
@@ -12,9 +16,12 @@ export function OnTheAir() {
             .then((response) => response.json())
             .then((data) => {
                 console.log("Donnéesssssssssssss récupérées :", data);
-                setData({ series : data });
+                const filteredSeries = data.filter((serie: TVShow) =>
+                    serie.name.toLowerCase().includes(searchQuery.toLowerCase())
+                );
+                setData({ series : filteredSeries });
             });
-    }, []);
+    }, [searchQuery]);
 
     return (
         <div className="mt-8">
@@ -25,7 +32,7 @@ export function OnTheAir() {
             <h1 className="text-3xl font-extrabold text-gray-800 mb-6 text-center">On The Air Series</h1>
             <div className="flex flex-wrap justify-center gap-3">
                 {data.series?.map((serie) => (
-                    <SerieCard key={serie.id} serie={serie} />
+                    <SerieCard key={serie.id} serie={serie} onClick={() => {onSerieClick(serie);setIsMovie(false)}}/>
                 ))}
             </div>
             </>

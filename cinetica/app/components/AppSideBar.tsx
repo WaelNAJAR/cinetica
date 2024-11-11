@@ -47,7 +47,7 @@ export function AppSidebar({
                             className="hover:bg-gray-800 rounded-lg">
                             <div className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-white">
                                 <Film />
-                                <span className={`${state === "collapsed" ? "hidden" : ""}`}>Now Playing</span>
+                                <span >Now Playing</span>
                             </div>
                         </button>
                         <button onClick={() => {setSelectedContent("Popular");
@@ -56,14 +56,14 @@ export function AppSidebar({
                                 className="hover:bg-gray-800 rounded-lg">
                             <div className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-white">
                                 <Film />
-                                <span className={`${state === "collapsed" ? "hidden" : ""}`}>Popular</span>
+                                <span>Popular</span>
                             </div>
                         </button>
                         <button onClick={() => setSelectedContent("Top Rated")}
                                 className="hover:bg-gray-800 rounded-lg">
                             <div className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-white">
                                 <Film />
-                                <span className={`${state === "collapsed" ? "hidden" : ""}`}>Top Rated</span>
+                                <span>Top Rated</span>
                             </div>
                         </button>
 
@@ -76,7 +76,7 @@ export function AppSidebar({
                         className="hover:bg-gray-800 rounded-lg">
                             <div className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-white">
                                 <Tv />
-                                <span className={`${state === "collapsed" ? "hidden" : ""}`}>On The Air</span>
+                                <span >On The Air</span>
                             </div>
                         </button>
                         <button onClick={()=>{setInMovie(false);
@@ -85,7 +85,7 @@ export function AppSidebar({
                         className="hover:bg-gray-800 rounded-lg">
                             <div className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-white">
                                 <Tv />
-                                <span className={`${state === "collapsed" ? "hidden" : ""}`}>Popular</span>
+                                <span >Popular</span>
                             </div>
                         </button>
                         <button onClick={()=>{
@@ -94,7 +94,7 @@ export function AppSidebar({
                         }} className="hover:bg-gray-800 rounded-lg">
                             <div className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-white">
                                 <Tv />
-                                <span className={`${state === "collapsed" ? "hidden" : ""}`}>Top Rated</span>
+                                <span >Top Rated</span>
                             </div>
                         </button>
                     </SidebarGroup>
@@ -105,13 +105,13 @@ export function AppSidebar({
                         <div className="hover:bg-gray-800 rounded-lg">
                             <div className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-white">
                                 <Star />
-                                <span className={`${state === "collapsed" ? "hidden" : ""}`}>Favorite Movies</span>
+                                <span >Favorite Movies</span>
                             </div>
                         </div>
                         <div className="hover:bg-gray-800 rounded-lg">
                             <div className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-white">
                                 <Star />
-                                <span className={`${state === "collapsed" ? "hidden" : ""}`}>Favorite Shows</span>
+                                <span >Favorite Shows</span>
                             </div>
                         </div>
                     </SidebarGroup>
@@ -122,7 +122,7 @@ export function AppSidebar({
                     <div className="hover:bg-gray-800 rounded-lg">
                         <div className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-white">
                             <LogOut />
-                            <span className={`${state === "collapsed" ? "hidden" : ""}`}>Log Out</span>
+                            <span >Log Out</span>
                         </div>
                     </div>
                 </SidebarFooter>

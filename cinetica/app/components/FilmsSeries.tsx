@@ -7,8 +7,12 @@ import Loading from "./Loading";
 
 interface FilmsSeriesProps {
     searchQuery: string;
-  }
-export function FilmsSeries({ searchQuery }: FilmsSeriesProps) {
+    onMovieClick: (movie: Movie) => void;
+    onSerieClick:(serie : TVShow) => void ;
+    setIsMovie : any ; 
+}
+
+export function FilmsSeries({ searchQuery, onMovieClick , setIsMovie , onSerieClick}: FilmsSeriesProps)  {
     const [data, setData] = useState<{ films: Movie[]; series: TVShow[] } | null>(null);
 
     useEffect(() => {
@@ -38,7 +42,13 @@ export function FilmsSeries({ searchQuery }: FilmsSeriesProps) {
                     <h1 className="text-3xl font-extrabold text-gray-800 mb-6 text-center">Films</h1>
                         <div className="flex flex-wrap justify-center gap-2">
                             {filteredFilms?.map((movie) => (
-                                <MovieCard key={movie.id} movie={movie} />
+                                  <MovieCard 
+                                  key={movie.id} 
+                                  movie={movie} 
+                                  onClick={() => {onMovieClick(movie);
+                                                  setIsMovie(true);
+                                  }} 
+                              />
                             ))}
                         </div>
                     </div>
@@ -48,7 +58,13 @@ export function FilmsSeries({ searchQuery }: FilmsSeriesProps) {
 
                         <div className="flex flex-wrap justify-center gap-3">
                             {filteredSeries?.map((serie) => (
-                                <SerieCard key={serie.id} serie={serie} />
+                                 <SerieCard 
+                                 key={serie.id} 
+                                 serie={serie} 
+                                 onClick={()=> {onSerieClick(serie);
+                                    setIsMovie(false); 
+                                  }                    }
+                             />
                             ))}
                         </div>
                     </div>
