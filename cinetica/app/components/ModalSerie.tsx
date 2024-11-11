@@ -1,6 +1,13 @@
 import React from 'react';
-
-const ModalSerie = ({ isOpen, onClose, serie , isMovie }) => {
+import { TVShow } from '../entities/TVShow';
+interface ModalSerieProps {
+    isOpen: boolean;
+    onClose: () => void;
+    serie: TVShow | null;
+    isMovie: boolean;
+  }
+  
+const ModalSerie = ({ isOpen, onClose, serie , isMovie }:ModalSerieProps) => {
     if (!isOpen || !serie) return null;
 
     return (
@@ -55,7 +62,7 @@ const ModalSerie = ({ isOpen, onClose, serie , isMovie }) => {
                             <strong>Nombre de votes:</strong> {serie.vote_count || "N/A"}
                         </div>
                         <div>
-                            <strong>Pays d'origine:</strong> {serie.origin_country?.join(", ") || "Inconnu"}
+                            <strong>Pays d origine:</strong> {serie.origin_country?.join(", ") || "Inconnu"}
                         </div>
                     </div>
                 </div>

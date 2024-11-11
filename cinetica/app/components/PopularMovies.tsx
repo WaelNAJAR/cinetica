@@ -6,7 +6,8 @@ import Loading from "./Loading";
 interface PopularFilmProps {
     searchQuery: string;
     onMovieClick: (movie: Movie) => void;
-    setIsMovie : any ; 
+    setIsMovie: (isMovie: boolean) => void;
+ 
 }
 export function PopularMovies({ searchQuery, onMovieClick , setIsMovie }: PopularFilmProps) {
     const [data, setData] = useState<{ films: Movie[] } | null>(null);

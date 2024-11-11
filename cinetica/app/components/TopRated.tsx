@@ -6,7 +6,8 @@ import Loading from "./Loading";
 interface TopRatedFilmProps {
     searchQuery: string;
     onMovieClick: (movie: Movie) => void;
-    setIsMovie: any ; 
+    setIsMovie: (isMovie: boolean) => void;
+ 
 }
 export function TopRated({ searchQuery, onMovieClick , setIsMovie}: TopRatedFilmProps) {
     const [data, setData] = useState<{ films: Movie[] } | null>(null);

@@ -9,7 +9,7 @@ interface FilmsSeriesProps {
     searchQuery: string;
     onMovieClick: (movie: Movie) => void;
     onSerieClick:(serie : TVShow) => void ;
-    setIsMovie : any ; 
+    setIsMovie: (isMovie: boolean) => void;
 }
 
 export function FilmsSeries({ searchQuery, onMovieClick , setIsMovie , onSerieClick}: FilmsSeriesProps)  {

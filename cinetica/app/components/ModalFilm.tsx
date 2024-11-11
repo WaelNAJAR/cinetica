@@ -1,6 +1,12 @@
 import React from 'react';
-
-const ModalFilm = ({ isOpen, onClose, item , isMovie }) => {
+import { Movie } from '../entities/Movie';
+interface ModalFilmProps {
+    isOpen: boolean;
+    onClose: () => void;
+    item: Movie | null;
+    isMovie: boolean;
+  }
+const ModalFilm = ({ isOpen, onClose, item , isMovie }:ModalFilmProps) => {
     if (!isOpen || !item) return null;
 
     return (

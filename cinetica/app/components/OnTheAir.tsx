@@ -6,7 +6,8 @@ import Loading from "./Loading";
 interface onTheAirSerieProps {
     searchQuery: string;
     onSerieClick: (serie: TVShow) => void;
-    setIsMovie: any ;
+    setIsMovie: (isMovie: boolean) => void;
+
 }
 export function OnTheAir({searchQuery,onSerieClick,setIsMovie}:onTheAirSerieProps) {
     const [data, setData] = useState<{ series: TVShow[]} | null>(null);

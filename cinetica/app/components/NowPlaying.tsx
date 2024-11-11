@@ -6,7 +6,8 @@ import Loading from "./Loading";
 interface NowPlayingProps {
     searchQuery: string;
     onMovieClick: (movie: Movie) => void;
-    setIsMovie : any ;
+    setIsMovie: (isMovie: boolean) => void;
+
 }
 export function NowPlaying({ searchQuery, onMovieClick , setIsMovie }: NowPlayingProps) {
     const [data, setData] = useState<{ films: Movie[] } | null>(null);

@@ -6,7 +6,8 @@ import Loading from "./Loading";
 interface PopularSerieProps {
     searchQuery: string;
     onSerieClick: (serie: TVShow) => void;
-    setIsMovie : any 
+    setIsMovie: (isMovie: boolean) => void;
+
 }
 export function PopularSeries({ searchQuery, onSerieClick ,setIsMovie}: PopularSerieProps) {
     const [data, setData] = useState<{ series: TVShow[] } | null>(null);

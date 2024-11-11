@@ -13,18 +13,21 @@ import { PopularSeries } from '../components/PopularSeries' ;
 import { TopRatedSeries } from '../components/TopRatedSeries';
 import ModalFilm from '../components/ModalFilm';
 import ModalSerie from '../components/ModalSerie';
+import { Movie } from '../entities/Movie';
+import { TVShow } from '../entities/TVShow';
 const HomePage = () => {
+    const item =null;
     const [selectedContent, setSelectedContent] = useState("");
     const [inMovie, setInMovie] = useState(true);  // pour les appartenances aux menus 
     const [isMovie, setIsMovie] = useState(false);  // pour identifier si c est un movie ou serie 
     const [searchQuery, setSearchQuery] = useState("");
-    const [selectedItem, setSelectedItem] = useState(null);
+    const [selectedItem, setSelectedItem] = useState<Movie | TVShow | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const handleSearch = (query: string) => {
         setSearchQuery(query);
       };
 
-    const handleItemClick = (item:any) => {
+      const handleItemClick = (item: Movie | TVShow ) => { // Utilisation du type union
         setSelectedItem(item);
         setIsModalOpen(true);
     };
@@ -39,8 +42,8 @@ const HomePage = () => {
             <div className="flex pt-16">
                 <Navbar onSearch={handleSearch}/>
                 <AppSidebar setSelectedContent={setSelectedContent} setInMovie={setInMovie} />
-                <ModalFilm isOpen={isModalOpen} onClose={closeModal} item={selectedItem} isMovie={isMovie}/>
-                <ModalSerie isOpen={isModalOpen} onClose={closeModal} serie={selectedItem} isMovie={isMovie}/>
+                <ModalFilm isOpen={isModalOpen} onClose={closeModal} item={selectedItem as Movie} isMovie={isMovie}/>
+                <ModalSerie isOpen={isModalOpen} onClose={closeModal} serie={selectedItem as TVShow} isMovie={isMovie}/>
 
                 {selectedContent === "" ? (
                         <FilmsSeries searchQuery={searchQuery} onMovieClick={handleItemClick} onSerieClick={handleItemClick} setIsMovie={setIsMovie}/> // Affiche par défaut les films et séries
