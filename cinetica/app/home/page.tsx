@@ -16,7 +16,6 @@ import ModalSerie from '../components/ModalSerie';
 import { Movie } from '../entities/Movie';
 import { TVShow } from '../entities/TVShow';
 const HomePage = () => {
-    const item =null;
     const [selectedContent, setSelectedContent] = useState("");
     const [inMovie, setInMovie] = useState(true);  // pour les appartenances aux menus 
     const [isMovie, setIsMovie] = useState(false);  // pour identifier si c est un movie ou serie 

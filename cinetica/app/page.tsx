@@ -8,7 +8,7 @@ export default function Home() {
   const [welcomeMessage, setWelcomeMessage] = useState(''); // État pour le message de bienvenue
   const router = useRouter();
 
-  const handleLogIn = async (event) => {
+  const handleLogIn = async (event: React.FormEvent) => {
     event.preventDefault();
 
     const response = await fetch('/api/authentification', {
@@ -99,7 +99,7 @@ export default function Home() {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-gray-800 text-white p-6 rounded-lg shadow-lg text-center">
             <h2 className="text-3xl font-bold mb-4">{welcomeMessage}</h2>
-            <p>Redirection vers votre page d'accueil...</p>
+            <p>Redirection vers votre page d accueil...</p>
           </div>
         </div>
       )}
