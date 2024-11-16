@@ -56,7 +56,7 @@ export function FilmsSeries({ searchQuery, onMovieClick , setIsMovie , onSerieCl
                     <div className="mt-8">
                     <h1 className="text-3xl font-extrabold text-gray-800 mb-6 text-center">Series</h1>
 
-                        <div className="flex flex-wrap justify-center gap-3">
+                        <div className="flex flex-wrap justify-center gap-2">
                             {filteredSeries?.map((serie) => (
                                  <SerieCard 
                                  key={serie.id} 

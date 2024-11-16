@@ -9,6 +9,8 @@ import {
 
 import { Film, Tv, Star, LogOut, Menu, ChevronLeft } from "lucide-react"; // Icônes de Lucide
 import  { useRouter } from 'next/navigation';
+import { useIsMobile } from '@/hooks/use-mobile'; // Importez votre hook useIsMobile
+
 
 interface AppSidebarProps {
     setSelectedContent?: (content: string) => void;
@@ -19,22 +21,25 @@ export function AppSidebar({
     setInMovie = () => {},        // Valeur par défaut si non fournie
   }: AppSidebarProps) {
     const { toggleSidebar, state } = useSidebar(); // Utilisation du hook pour basculer la sidebar et accéder à son état
+
     const router = useRouter();
+    const isMobile = useIsMobile(); // Utilisation du hook pour détecter si l'utilisateur est en version mobile
+    console.log("state is:", state);
+    console.log("isMobile is:", isMobile);
     function versLogin()
     {
         router.push('/'); 
     }
     return (
         <div className="relative">
-            {/* Icône pour ouvrir/fermer la sidebar */}
-            <button
-                onClick={toggleSidebar}
-                className="absolute top-4 -right-10 z-20 bg-gray-700 text-white p-2 w-8 h-8 flex items-center justify-center hover:bg-gray-600 rounded-md shadow-md"
-            >
-                {state === "expanded" ? <ChevronLeft /> : <Menu />}
-            </button>
-
-
+            {isMobile && (
+                <button
+                    onClick={toggleSidebar}
+                    className="absolute top-4 -right-10 z-20 bg-gray-700 text-white p-2 w-8 h-8 flex items-center justify-center hover:bg-gray-600 rounded-md shadow-md"
+                >
+                    <Menu />
+                </button>
+            )}
             <Sidebar
                 className={`w-64 bg-gray-900 text-gray-200 ${state === "collapsed" ? "w-16" : "w-64"}`}
             >
@@ -111,13 +116,13 @@ export function AppSidebar({
                         <div className="hover:bg-gray-800 rounded-lg">
                             <div className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-white">
                                 <Star />
-                                <span >Favorite Movies</span>
+                                <button onClick={() => router.push('/FavoritesFilms')}>Favorite Movies</button>
                             </div>
                         </div>
                         <div className="hover:bg-gray-800 rounded-lg">
                             <div className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-white">
                                 <Star />
-                                <span >Favorite Shows</span>
+                                <button onClick={() => router.push('/FavoritesSeries')}>Favorite Shows</button>
                             </div>
                         </div>
                     </SidebarGroup>

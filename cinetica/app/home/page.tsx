@@ -2,17 +2,17 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { SidebarProvider } from "@/components/ui/sidebar";  // Assurez-vous de l'importer depuis shadcn
-import { AppSidebar } from '../components/AppSideBar';
-import Navbar from '../components/NavBar';
-import { FilmsSeries } from '../components/FilmsSeries';
-import { NowPlaying} from '../components/NowPlaying' ;
-import { PopularMovies } from '../components/PopularMovies' ; 
-import { TopRated } from '../components/TopRated';
-import { OnTheAir } from '../components/OnTheAir';
-import { PopularSeries } from '../components/PopularSeries' ; 
-import { TopRatedSeries } from '../components/TopRatedSeries';
-import ModalFilm from '../components/ModalFilm';
-import ModalSerie from '../components/ModalSerie';
+import { AppSidebar } from '../pages/AppSideBar';
+import Navbar from '../pages/NavBar';
+import { FilmsSeries } from '../pages/FilmsSeries';
+import { NowPlaying} from '../pages/NowPlaying' ;
+import { PopularMovies } from '../pages/PopularMovies' ; 
+import { TopRated } from '../pages/TopRated';
+import { OnTheAir } from '../pages/OnTheAir';
+import { PopularSeries } from '../pages/PopularSeries' ; 
+import { TopRatedSeries } from '../pages/TopRatedSeries';
+import ModalFilm from '../pages/ModalFilm';
+import ModalSerie from '../pages/ModalSerie';
 import { Movie } from '../entities/Movie';
 import { TVShow } from '../entities/TVShow';
 const HomePage = () => {
