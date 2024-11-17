@@ -33,12 +33,14 @@ export function AppSidebar({
     return (
         <div className="relative">
             {isMobile && (
+                <>
                 <button
                     onClick={toggleSidebar}
-                    className="absolute top-4 -right-10 z-20 bg-gray-700 text-white p-2 w-8 h-8 flex items-center justify-center hover:bg-gray-600 rounded-md shadow-md"
+                    className="absolute top-16 -right-10 z-20 bg-gray-700 text-white p-2 w-8 h-8 flex items-center justify-center hover:bg-gray-600 rounded-md shadow-md"
                 >
                     <Menu />
                 </button>
+                </>
             )}
             <Sidebar
                 className={`w-64 bg-gray-900 text-gray-200 ${state === "collapsed" ? "w-16" : "w-64"}`}

@@ -27,8 +27,8 @@ const FavoritesFilms: React.FC<FavoritesFilmsProps> = ({ searchQuery, onMovieCli
     
 
     return (
-        <div className="min-h-screen  text-white py-8 px-6">
-            <h2 className="text-4xl font-bold mb-6 text-center">Vos Films Favoris</h2>
+        <div className="min-h-screen  text-gray-700 py-8 px-6">
+            <h2 className="text-4xl font-bold mb-6 text-center ">Vos Films Favoris</h2>
             {favorites.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
                     {favorites.map((movie) => (
