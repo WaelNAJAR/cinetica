@@ -116,13 +116,13 @@ export function AppSidebar({
                         <div className="hover:bg-gray-800 rounded-lg">
                             <div className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-white">
                                 <Star />
-                                <button onClick={() => router.push('/FavoritesFilms')}>Favorite Movies</button>
+                                <button onClick={() => setSelectedContent("FavoritesFilms")}>Favorite Movies</button>
                             </div>
                         </div>
                         <div className="hover:bg-gray-800 rounded-lg">
                             <div className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-white">
                                 <Star />
-                                <button onClick={() => router.push('/FavoritesSeries')}>Favorite Shows</button>
+                                <button onClick={() => setSelectedContent("FavoritesSeries")}>Favorite Shows</button>
                             </div>
                         </div>
                     </SidebarGroup>

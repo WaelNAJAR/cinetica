@@ -15,6 +15,8 @@ import ModalFilm from '../pages/ModalFilm';
 import ModalSerie from '../pages/ModalSerie';
 import { Movie } from '../entities/Movie';
 import { TVShow } from '../entities/TVShow';
+import FavoritesFilms from '../pages/FavoritesFilms';
+import FavoritesSeries from '../pages/FavoritesSeries';
 const HomePage = () => {
     const [selectedContent, setSelectedContent] = useState("");
     const [inMovie, setInMovie] = useState(true);  // pour les appartenances aux menus 
@@ -42,36 +44,60 @@ const HomePage = () => {
     };
 
     return (
+        <div className="flex flex-col min-h-screen ">
         <SidebarProvider> {/* Encapsule toute la page dans SidebarProvider */}
-            <div className="flex pt-16">
-                <Navbar onSearch={handleSearch} setSelectedContent={setSelectedContent}/>
-                <AppSidebar setSelectedContent={setSelectedContent} setInMovie={setInMovie} />
-                <ModalFilm isOpen={isModalOpen} onClose={closeModal} item={selectedItem as Movie} isMovie={isMovie}/>
-                <ModalSerie isOpen={isModalOpen} onClose={closeModal} serie={selectedItem as TVShow} isMovie={isMovie}/>
-
-                {selectedContent === "" ? (
-                        <FilmsSeries searchQuery={searchQuery} onMovieClick={handleItemClick} onSerieClick={handleItemClick} setIsMovie={setIsMovie}/> // Affiche par défaut les films et séries
-                    ) : (
-                        selectedContent === "Now Playing" ? (
+                {/* Navbar */}
+                <Navbar onSearch={handleSearch} setSelectedContent={setSelectedContent} />
+    
+                <div className="flex flex-grow p-6">
+                    {/* Sidebar */}
+                    <AppSidebar setSelectedContent={setSelectedContent} setInMovie={setInMovie} />
+    
+                    {/* Contenu principal */}
+                    <div className="flex-grow p-6">
+                        {/* Modales */}
+                        <ModalFilm isOpen={isModalOpen} onClose={closeModal} item={selectedItem as Movie} isMovie={isMovie} />
+                        <ModalSerie isOpen={isModalOpen} onClose={closeModal} serie={selectedItem as TVShow} isMovie={isMovie} />
+    
+                        {/* Contenu conditionnel */}
+                        {selectedContent === "" ? (
+                            <FilmsSeries
+                                searchQuery={searchQuery}
+                                onMovieClick={handleItemClick}
+                                onSerieClick={handleItemClick}
+                                setIsMovie={setIsMovie}
+                            /> // Affiche par défaut les films et séries
+                        ) : selectedContent === "Now Playing" ? (
                             <NowPlaying searchQuery={searchQuery} onMovieClick={handleItemClick} setIsMovie={setIsMovie} />
-                        ) : (selectedContent === "Popular" && inMovie)? (
-                            <PopularMovies searchQuery={searchQuery} onMovieClick={handleItemClick} setIsMovie={setIsMovie}/>
-                        ) : (selectedContent === "Top Rated" && inMovie) ? (
-                            <TopRated searchQuery={searchQuery} onMovieClick={handleItemClick} setIsMovie={setIsMovie}/>
+                        ) : selectedContent === "Popular" && inMovie ? (
+                            <PopularMovies searchQuery={searchQuery} onMovieClick={handleItemClick} setIsMovie={setIsMovie} />
+                        ) : selectedContent === "Top Rated" && inMovie ? (
+                            <TopRated searchQuery={searchQuery} onMovieClick={handleItemClick} setIsMovie={setIsMovie} />
                         ) : selectedContent === "On The Air" ? (
-                            <OnTheAir searchQuery={searchQuery} onSerieClick={handleItemClick} setIsMovie={setIsMovie}/>
-                        ) : (selectedContent === "Popular" && !inMovie)? (
-                            <PopularSeries searchQuery={searchQuery} onSerieClick={handleItemClick} setIsMovie={setIsMovie}/>
-                        ) : (selectedContent === "Top Rated" && !inMovie)? (
-                            <TopRatedSeries searchQuery={searchQuery} onSerieClick={handleItemClick} setIsMovie={setIsMovie}/>
-                        ): (
-                            <FilmsSeries searchQuery={searchQuery} onMovieClick={handleItemClick} setIsMovie={setIsMovie} onSerieClick={handleItemClick} /> // Affiche par défaut les films et séries
-                        )
-                    )}
-            </div>
-
+                            <OnTheAir searchQuery={searchQuery} onSerieClick={handleItemClick} setIsMovie={setIsMovie} />
+                        ) : selectedContent === "Popular" && !inMovie ? (
+                            <PopularSeries searchQuery={searchQuery} onSerieClick={handleItemClick} setIsMovie={setIsMovie} />
+                        ) : selectedContent === "Top Rated" && !inMovie ? (
+                            <TopRatedSeries searchQuery={searchQuery} onSerieClick={handleItemClick} setIsMovie={setIsMovie} />
+                        ) : selectedContent === "FavoritesFilms" ? (
+                            <FavoritesFilms searchQuery={searchQuery} onMovieClick={handleItemClick} />
+                        ) : selectedContent === "FavoritesSeries" ? (
+                            <FavoritesSeries searchQuery={searchQuery} onSerieClick={handleItemClick} />
+                        ) : (
+                            <FilmsSeries
+                                searchQuery={searchQuery}
+                                onMovieClick={handleItemClick}
+                                setIsMovie={setIsMovie}
+                                onSerieClick={handleItemClick}
+                            /> // Affiche par défaut les films et séries
+                        )}
+                    </div>
+                </div>
         </SidebarProvider>
+        </div>
+
     );
+    
 };
 
 export default HomePage;

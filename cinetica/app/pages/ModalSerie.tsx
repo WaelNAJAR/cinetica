@@ -62,16 +62,16 @@ const ModalSerie = ({ isOpen, onClose, serie, isMovie }: ModalSerieProps) => {
                             </span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <Activity size={20} className="text-blue-500" />
+              <Activity size={20} className="text-blue-500" />
+              <span>
+                <strong>Popularité:</strong> {serie.popularity.toFixed(1)} / 100
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+                            <Users size={20} className="text-purple-500" />
                             <span>
-                                <strong>Popularité:</strong>
+                                <strong>Nombre de votes:</strong> {serie.vote_count || "N/A"}
                             </span>
-                        </div>
-                        <div className="relative w-full h-4 bg-gray-300 rounded-full shadow-inner">
-                            <div
-                                className="absolute top-0 left-0 h-4 bg-green-500 rounded-full transition-all"
-                                style={{ width: `${popularityPercentage}%` }}
-                            ></div>
                         </div>
                         <div className="flex items-center gap-2">
                             <Star size={20} className="text-yellow-500" />
@@ -91,12 +91,7 @@ const ModalSerie = ({ isOpen, onClose, serie, isMovie }: ModalSerieProps) => {
                                 style={{ width: `${voteAveragePercentage}%` }}
                             ></div>
                         </div>
-                        <div className="flex items-center gap-2">
-                            <Users size={20} className="text-purple-500" />
-                            <span>
-                                <strong>Nombre de votes:</strong> {serie.vote_count || "N/A"}
-                            </span>
-                        </div>
+                       
                         <div className="flex items-center gap-2">
                             <AlertCircle size={20} className="text-red-500" />
                             <span>

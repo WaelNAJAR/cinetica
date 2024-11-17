@@ -64,14 +64,14 @@ const ModalFilm = ({ isOpen, onClose, item, isMovie }: ModalFilmProps) => {
             <div className="flex items-center gap-2">
               <Activity size={20} className="text-blue-500" />
               <span>
-                <strong>Popularité:</strong>
+                <strong>Popularité:</strong> {item.popularity.toFixed(1)} / 100
               </span>
             </div>
-            <div className="relative w-full h-4 bg-gray-300 rounded-full shadow-inner">
-              <div
-                className="absolute top-0 left-0 h-4 bg-green-500 rounded-full transition-all"
-                style={{ width: `${popularityPercentage}%` }}
-              ></div>
+            <div className="flex items-center gap-2">
+              <Users size={20} className="text-purple-500" />
+              <span>
+                <strong>Nombre de votes:</strong> {item.vote_count || "N/A"}
+              </span>
             </div>
             <div className="flex items-center gap-2">
               <Star size={20} className="text-yellow-500" />
@@ -81,22 +81,16 @@ const ModalFilm = ({ isOpen, onClose, item, isMovie }: ModalFilmProps) => {
             </div>
             <div className="relative w-full h-4 bg-gray-300 rounded-full shadow-inner">
               <div
-                className={`absolute top-0 left-0 h-4 ${
-                  voteAveragePercentage > 50
+                className={`absolute top-0 left-0 h-4 ${voteAveragePercentage > 50
                     ? "bg-green-500"
                     : voteAveragePercentage > 30
-                    ? "bg-yellow-500"
-                    : "bg-red-500"
-                } rounded-full transition-all`}
+                      ? "bg-yellow-500"
+                      : "bg-red-500"
+                  } rounded-full transition-all`}
                 style={{ width: `${voteAveragePercentage}%` }}
               ></div>
             </div>
-            <div className="flex items-center gap-2">
-              <Users size={20} className="text-purple-500" />
-              <span>
-                <strong>Nombre de votes:</strong> {item.vote_count || "N/A"}
-              </span>
-            </div>
+            
             <div className="flex items-center gap-2">
               <AlertCircle size={20} className="text-red-500" />
               <span>
@@ -104,6 +98,7 @@ const ModalFilm = ({ isOpen, onClose, item, isMovie }: ModalFilmProps) => {
               </span>
             </div>
           </div>
+
         </div>
       </div>
     </div>
