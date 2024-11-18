@@ -5,6 +5,9 @@ export const users = [
     }
 ];
 
+
+
+
 // Fonction pour ajouter un utilisateur
 export function addUser(username:string, password:string) {
     // Vérifie si l'utilisateur existe déjà
