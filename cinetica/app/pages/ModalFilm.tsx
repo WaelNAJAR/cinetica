@@ -12,7 +12,6 @@ interface ModalFilmProps {
 const ModalFilm = ({ isOpen, onClose, item, isMovie }: ModalFilmProps) => {
   if (!isOpen || !item) return null;
 
-  const popularityPercentage = Math.min(Math.max(item.popularity / 100, 0), 1) * 100;
   const voteAveragePercentage = Math.min(Math.max(item.vote_average / 10, 0), 1) * 100;
 
   return isMovie ? (

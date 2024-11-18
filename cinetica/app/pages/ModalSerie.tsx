@@ -12,7 +12,6 @@ interface ModalSerieProps {
 const ModalSerie = ({ isOpen, onClose, serie, isMovie }: ModalSerieProps) => {
     if (!isOpen || !serie) return null;
 
-    const popularityPercentage = Math.min(Math.max(serie.popularity / 100, 0), 1) * 100;
     const voteAveragePercentage = Math.min(Math.max(serie.vote_average / 10, 0), 1) * 100;
 
     return !isMovie ? (
@@ -95,7 +94,7 @@ const ModalSerie = ({ isOpen, onClose, serie, isMovie }: ModalSerieProps) => {
                         <div className="flex items-center gap-2">
                             <AlertCircle size={20} className="text-red-500" />
                             <span>
-                                <strong>Pays d'origine:</strong> {serie.origin_country?.join(", ") || "Inconnu"}
+                                <strong>Pays d origine:</strong> {serie.origin_country?.join(", ") || "Inconnu"}
                             </span>
                         </div>
                     </div>

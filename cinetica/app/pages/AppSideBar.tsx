@@ -7,7 +7,7 @@ import {
     useSidebar,
 } from "@/components/ui/sidebar";
 
-import { Film, Tv, Star, LogOut, Menu, ChevronLeft } from "lucide-react"; // Icônes de Lucide
+import { Film, Tv, Star, LogOut, Menu } from "lucide-react"; // Icônes de Lucide
 import  { useRouter } from 'next/navigation';
 import { useIsMobile } from '@/hooks/use-mobile'; // Importez votre hook useIsMobile
 

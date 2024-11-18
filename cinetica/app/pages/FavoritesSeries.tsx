@@ -38,7 +38,7 @@ useEffect(() => {
                 </div>
             ) : (
                 <div className="flex justify-center items-center h-64">
-                    <p className="text-lg text-gray-400">Aucune série n'a été ajoutée aux favoris.</p>
+                    <p className="text-lg text-gray-400">Aucune série n a été ajoutée aux favoris.</p>
                 </div>
             )}
         </div>

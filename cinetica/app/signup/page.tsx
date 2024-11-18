@@ -55,7 +55,7 @@ export default function SignUpPage() {
         >
           <h2 className="text-3xl font-bold mb-4">{notification.message}</h2>
           {notification.type === "success" ? (
-            <p>Redirection vers votre page d'accueil...</p>
+            <p>Redirection vers votre page d accueil...</p>
           ) : (
             <p>Veuillez vérifier vos informations.</p>
           )}

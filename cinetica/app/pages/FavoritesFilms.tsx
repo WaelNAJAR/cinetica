@@ -42,7 +42,7 @@ const FavoritesFilms: React.FC<FavoritesFilmsProps> = ({ searchQuery, onMovieCli
                 </div>
             ) : (
                 <div className="flex justify-center items-center h-64">
-                    <p className="text-lg text-gray-400">Aucun film n'a été ajouté aux favoris.</p>
+                    <p className="text-lg text-gray-400">Aucun film n a été ajouté aux favoris.</p>
                 </div>
             )}
         </div>
